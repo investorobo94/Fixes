@@ -19,6 +19,6 @@ new_col = pd.concat([afir,miss_a], ignore_index = True)
 afuc.iloc[:,0] = new_col
 
 afuc = pd.merge(afuc, bfuc, on = 'ISIN', how = 'left')
-print(afir.head())
+print(afuc.head())
 
-afir.to_excel(Afile, index=False)
+afuc.to_excel(Afile, index=False)
