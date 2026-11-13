@@ -14,9 +14,9 @@ bfir = bfuc.iloc[:,0].str.strip().str.upper().dropna()
 
 miss_a = bfir[~bfir.isin(afir)].drop_duplicates()
 
-new_col = pd.concat([afir,miss_a], ignore_index = True)
-
-afuc.iloc[:,0] = new_col
+if not miss_a.empty:
+    missing_rows = pd.DataFrame({afuc.columns[0]: miss_a.values})
+    afuc = pd.concat([afuc, missing_rows], ignore_index=True)
 
 afuc = pd.merge(afuc, bfuc, on = 'ISIN', how = 'left')
 print(afuc.head())
