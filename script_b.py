@@ -1,12 +1,24 @@
-# script_b.py
-# Import the specific variable or function from script_a
-from script_a import my_dataset, load_my_dataset
+# script_a.py
+import pandas as pd
 
-# If you used Option A (Direct variable):
-print("Using direct variable:")
-print(my_dataset.head())
+# Option A: Direct variable definition
 
-# If you used Option B (Function wrapper):
-print("\nUsing function wrapper:")
-df = load_my_dataset()
-print(df.describe())
+Afile = "trial.xlsx"
+Bfile = "amf.xlsx"
+
+afuc = pd.read_excel('trial.xlsx')
+bfuc = pd.read_excel('amf.xlsx')
+
+afir = afuc.iloc[:,0].str.strip().str.upper().dropna()
+bfir = bfuc.iloc[:,0].str.strip().str.upper().dropna()
+
+miss_a = bfir[~bfir.isin(afir)].drop_duplicates()
+
+if not miss_a.empty:
+    missing_rows = pd.DataFrame({afuc.columns[0]: miss_a.values})
+    afuc = pd.concat([afuc, missing_rows], ignore_index=True)
+
+afuc = pd.merge(afuc, bfuc, on = 'ISIN', how = 'left')
+print(afuc.head())
+
+afuc.to_excel(Afile, index=False)
