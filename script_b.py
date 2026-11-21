@@ -23,7 +23,7 @@ print(f"Total dates: {len(date_range)}")
 print(f"First: {date_range[0]}")
 print(f"Last: {date_range[-1]}")
 
-bfuc = pd.concat([bfuc, afuc], ignore_index=True)
+bfuc = bfuc.merge(afuc, on='Date', how='left')
 print(bfuc.head())
 
 bfuc["NIFTY MIDCAP 150"] = bfuc["NIFTY MIDCAP 150"].ffill().fillna(0)
