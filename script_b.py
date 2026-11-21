@@ -17,7 +17,7 @@ date_range = [
   for i in range((end_date - start_date).days + 1)
 ]
 
-bfuc = pd.Dataframe({"Date": date_range})
+bfuc = pd.DataFrame({"Date": date_range})
 
 print(f"Total dates: {len(date_range)}")
 print(f"First: {date_range[0]}")
