@@ -26,4 +26,4 @@ print(f"Last: {date_range[-1]}")
 bfuc = pd.concat([bfuc, afuc], ignore_index=True)
 bfuc["NIFTY MIDCAP 150"] = bfuc["NIFTY MIDCAP 150"].ffill().fillna(0)
 
-result.to_csv(Bfile, index=False)
+bfuc.to_csv(Bfile, index=False)
