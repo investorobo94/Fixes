@@ -23,6 +23,9 @@ print(f"Total dates: {len(date_range)}")
 print(f"First: {date_range[0]}")
 print(f"Last: {date_range[-1]}")
 
+bfuc['Date'] = bfuc['Date'].dt.normalize()
+afuc['Date'] = afuc['Date'].dt.normalize()
+
 bfuc = bfuc.merge(afuc, on='Date', how='left')
 print(bfuc.head())
 
