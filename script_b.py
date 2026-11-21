@@ -24,6 +24,8 @@ print(f"First: {date_range[0]}")
 print(f"Last: {date_range[-1]}")
 
 bfuc = pd.concat([bfuc, afuc], ignore_index=True)
+print(bfuc.head())
+
 bfuc["NIFTY MIDCAP 150"] = bfuc["NIFTY MIDCAP 150"].ffill().fillna(0)
 
 print(bfuc.head())
