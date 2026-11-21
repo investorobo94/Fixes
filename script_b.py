@@ -8,7 +8,7 @@ Afile = "amff.csv"
 Bfile = "amfo.csv"
 
 afuc = pd.read_csv('amff.csv')
-
+print(afuc.head())
 start_date = date(2005, 4, 1)
 end_date = date(2026, 9, 30)
 
