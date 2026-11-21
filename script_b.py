@@ -3,14 +3,15 @@ import pandas as pd
 
 # Option A: Direct variable definition
 
-Afile = "trial.xlsx"
-Bfile = "amf.xlsx"
+Afile = "amff.csv"
+Bfile = "amfo.csv"
 
-afuc = pd.read_excel('trial.xlsx')
-bfuc = pd.read_excel('amf.xlsx')
+afuc = pd.read_csv('amff.csv')
+bfuc = pd.read_csv('amfo.csv')
 
-afir = afuc.iloc[:,0].str.strip().str.upper().dropna()
-bfir = bfuc.iloc[:,0].str.strip().str.upper().dropna()
+ds1_first = ds1.drop_duplicates(subset="key", keep="first")
+result = ds2.merge(ds1_first, on="key", how="left")
+result["value"] = result["value"].ffill().fillna(0)
 
 miss_a = bfir[~bfir.isin(afir)].drop_duplicates()
 
