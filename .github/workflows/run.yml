@@ -34,7 +34,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run script
-        run: python script_a.py
+        run: python script_b.py
 
       - name: Show output files
         run: ls -la
