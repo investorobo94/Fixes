@@ -23,8 +23,7 @@ print(f"Total dates: {len(date_range)}")
 print(f"First: {date_range[0]}")
 print(f"Last: {date_range[-1]}")
 
-afuc_first = afuc.drop_duplicates(subset="Date", keep="first")
-result = bfuc.merge(afuc_first, on="Date", how="left")
-result["NIFTY MIDCAP 150"] = result["NIFTY MIDCAP 150"].ffill().fillna(0)
+bfuc = pd.concat([bfuc, afuc], ignore_index=True)
+bfuc["NIFTY MIDCAP 150"] = bfuc["NIFTY MIDCAP 150"].ffill().fillna(0)
 
 result.to_csv(Bfile, index=False)
