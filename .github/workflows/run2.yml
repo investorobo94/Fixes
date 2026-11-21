@@ -1,7 +1,6 @@
 name: Run My Pandas Script
 
 on:
-  schedule:
   workflow_dispatch: {}    # Allows you to click "Run" manually to test
 
 jobs:
