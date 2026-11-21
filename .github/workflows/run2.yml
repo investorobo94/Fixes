@@ -1,7 +1,7 @@
 name: Run My Pandas Script
 
 on:
-  workflow_dispatch: {}    # Allows you to click "Run" manually to test
+  workflow_dispatch: {}
 
 jobs:
   run-script:
@@ -20,3 +20,11 @@ jobs:
 
       - name: Run the script
         run: python script_b.py
+
+      - name: Upload amfo.csv
+        uses: actions/upload-artifact@v4
+        with:
+          name: amfo-csv
+          path: amfo.csv
+          if-no-files-found: error   # fail loudly if the script didn't write it
+          retention-days: 30
